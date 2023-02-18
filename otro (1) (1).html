@@ -3,6 +3,7 @@
 <html>
 
 <head>
+<meta charset="UFT-8">
     <title>
         Calculo de Tolerancia
     </title>
@@ -142,7 +143,10 @@
         function calcular() {
             var dimension = parseFloat(document.getElementById("dimension").value);
             var tolerancia = parseFloat(document.getElementById("tolerancia").value);
-
+            
+            if (isNaN(tolerancia)){
+            } else{
+            
             var dimensionNominal = Math.ceil(dimension);
 
             var tolnegativa = Math.ceil(dimension + tolerancia) - dimensionNominal;
@@ -151,6 +155,7 @@
             document.getElementById("dimensionNominal").value = dimensionNominal;
             document.getElementById("tolnegativa").value = tolnegativa;
             document.getElementById("tolpositiva").value = tolpositiva;
+            }
 
         }
     </script>
