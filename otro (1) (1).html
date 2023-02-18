@@ -3,11 +3,17 @@
 <html>
 
 <head>
-<meta charset="UFT-8">
+    <meta charset="UTF-8">
     <title>
         Calculo de Tolerancia
     </title>
     <style>
+        #texto {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+
         .centrado {
             text-align: center;
         }
@@ -32,7 +38,10 @@
         #dimension,
         #dimen0,
         #tolerancia,
-        #dimenpulgadas {
+        #dimenpulgadas,
+        #dimenpulgadasbreakout,
+        #dimenpulgadasomnicell,
+        #dimenpulgadas74 {
             background-color: rgb(248, 234, 190);
         }
 
@@ -45,7 +54,16 @@
         #result20,
         #dimensionNominal1,
         #tolpositiva1,
-        #tolnegativa1 {
+        #tolnegativa1,
+        #dimensionNominal1breakout,
+        #tolpositiva1breakout,
+        #tolnegativa1breakout,
+        #piesomnicell,
+        #tolpulomnicell,
+        #cincoporciento,
+        #tolmmomnicell,
+        #dimmm74,
+        #tolmm74 {
             background-color: rgb(146, 208, 80);
         }
     </style>
@@ -105,6 +123,51 @@
         <br>
         <input type="reset" value="Reset" id="resetBtn3">
     </form>
+    <br>
+    <br>
+    <br>
+    <h3>Tolerancia Breakout</h3>
+    <form>
+        Dimension en Pul.<input type="number" id="dimenpulgadasbreakout" oninput="calculabreakout()" placeholder="Ing."
+            class="centrado mediano">
+        Dimension Nominal<input type="text" id="dimensionNominal1breakout" placeholder="Result." readonly
+            class="centrado mediano">
+        Tolerancia (+)<input type="text" id="tolpositiva1breakout" placeholder="Result" readonly
+            class="centrado pequeno">
+        Tolerancia (-)<input type="text" id="tolnegativa1breakout" placeholder="Result" readonly
+            class="centrado pequeno">
+        <br>
+        <br>
+        <input type="reset" value="Reset" id="resetBtn4">
+    </form>
+    <br>
+    <br>
+    <br>
+    <h3>OMNICELL</h3>
+    <form>
+        Dimension en Pul.<input type="number" id="dimenpulgadasomnicell" oninput="calculaomnicell()" placeholder="Ing."
+            class="centrado mediano">
+        Pies<input type="text" id="piesomnicell" placeholder="Result." readonly class="centrado mediano">
+        Tolerancia (Pulg.)<input type="text" id="tolpulomnicell" placeholder="Result" readonly class="centrado pequeno">
+        5%<input type="text" id="cincoporciento" placeholder="Result" readonly class="centrado pequeno">
+        Tolerancia (mm)<input type="text" id="tolmmomnicell" placeholder="Result" readonly class="centrado pequeno">
+        <br>
+        <br>
+        <input type="reset" value="Reset" id="resetBtn5">
+    </form>
+    <br>
+    <br>
+    <br>
+    <h3>74-10024-00</h3>
+    <form>
+        Dimension en Pul.<input type="number" id="dimenpulgadas74" oninput="calcula74()" placeholder="Ing."
+            class="centrado mediano">
+        Dimension en mm<input type="text" id="dimmm74" placeholder="Result" readonly class="centrado mediano">
+        Tolerancia en mm<input type="text" id="tolmm74" placeholder="Result" readonly class="centrado pequeno">
+        <br>
+        <br>
+        <input type="reset" value="Reset" id="resetBtn6">
+    </form>
     <script>
         function calculate() {
             var dimen = parseFloat(document.getElementById('dimen').value);
@@ -143,20 +206,15 @@
         function calcular() {
             var dimension = parseFloat(document.getElementById("dimension").value);
             var tolerancia = parseFloat(document.getElementById("tolerancia").value);
-            
-            if (isNaN(tolerancia)){
-            } else{
-            
-            var dimensionNominal = Math.ceil(dimension);
-
-            var tolnegativa = Math.ceil(dimension + tolerancia) - dimensionNominal;
-            var tolpositiva = Math.floor(dimension + tolerancia) - dimensionNominal;
-
-            document.getElementById("dimensionNominal").value = dimensionNominal;
-            document.getElementById("tolnegativa").value = tolnegativa;
-            document.getElementById("tolpositiva").value = tolpositiva;
+            if (isNaN(tolerancia)) {
+            } else {
+                var dimensionNominal = Math.ceil(dimension);
+                var tolnegativa = Math.ceil(dimension + tolerancia) - dimensionNominal;
+                var tolpositiva = Math.floor(dimension + tolerancia) - dimensionNominal;
+                document.getElementById("dimensionNominal").value = dimensionNominal;
+                document.getElementById("tolnegativa").value = tolnegativa;
+                document.getElementById("tolpositiva").value = tolpositiva;
             }
-
         }
     </script>
     <script>
@@ -233,7 +291,119 @@
             }
         });
     </script>
+    <script>
+        function calculabreakout() {
+            var dimenpulgadasbreakout = parseFloat(document.getElementById('dimenpulgadasbreakout').value);
+            var resultA = 25.4 * (dimenpulgadasbreakout);
+            var dimensionNominal1breakout = Math.ceil(resultA);
+            document.getElementById('dimensionNominal1breakout').value = dimensionNominal1breakout;
+            if (dimensionNominal1breakout >= 0 && dimensionNominal1breakout <= 609.6) {
+                var resultB = Math.floor(dimensionNominal1breakout + 12.7) - dimensionNominal1breakout;
+                var resultC = 0;
+            } else if (dimensionNominal1breakout >= 609.7 && dimensionNominal1breakout <= 1219.2) {
+                var resultB = Math.floor(dimensionNominal1breakout + 19.1) - dimensionNominal1breakout;
+                var resultC = Math.floor(dimensionNominal1breakout - -19.1) - dimensionNominal1breakout;
+            } else if (dimensionNominal1breakout >= 1219.3 && dimensionNominal1breakout <= 2438.4) {
+                var resultB = Math.floor(dimensionNominal1breakout + 38.1) - dimensionNominal1breakout;
+                var resultC = Math.floor(dimensionNominal1breakout - -38.1) - dimensionNominal1breakout;
+            } else if (dimensionNominal1breakout >= 2438.5 && dimensionNominal1breakout <= 4876.8) {
+                var resultB = Math.floor(dimensionNominal1breakout + 50.8) - dimensionNominal1breakout;
+                var resultC = Math.floor(dimensionNominal1breakout - -50.8) - dimensionNominal1breakout;
+            } else if (dimensionNominal1breakout >= 4876.9 && dimensionNominal1breakout <= 9753.6) {
+                var resultB = Math.floor(dimensionNominal1breakout + 76.2) - dimensionNominal1breakout;
+                var resultC = Math.floor(dimensionNominal1breakout - -76.2) - dimensionNominal1breakout;
+            } else if (dimensionNominal1breakout >= 9753.7 && dimensionNominal1breakout <= 19405.6) {
+                var resultB = Math.floor(dimensionNominal1breakout + 146.1) - dimensionNominal1breakout;
+                var resultC = Math.floor(dimensionNominal1breakout - -146.1) - dimensionNominal1breakout;
+            } else if (dimensionNominal1breakout >= 19405.7 && dimensionNominal1breakout <= 38608) {
+                var resultB = Math.floor(dimensionNominal1breakout + 260.4) - dimensionNominal1breakout;
+                var resultC = Math.floor(dimensionNominal1breakout - -260.4) - dimensionNominal1breakout;
+            } else if (dimensionNominal1breakout >= 38608.1 && dimensionNominal1breakout <= 76860.4) {
+                var resultB = Math.floor(dimensionNominal1breakout + 304.8) - dimensionNominal1breakout;
+                var resultC = Math.floor(dimensionNominal1breakout - -304.8) - dimensionNominal1breakout;
+            }
 
+            document.getElementById('tolpositiva1breakout').value = resultB;
+            document.getElementById('tolnegativa1breakout').value = resultC;
+
+        }
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space") {
+                document.getElementById("resetBtn4").click();
+            }
+        });
+    </script>
+    <script>
+        function calculaomnicell() {
+            var dimenpulgadasomnicell = parseFloat(document.getElementById('dimenpulgadasomnicell').value);
+            var resultA = (dimenpulgadasomnicell) / 12;
+            var piesomnicell = resultA.toFixed(1);
+            document.getElementById('piesomnicell').value = piesomnicell;
+            if (piesomnicell >= 0 && piesomnicell < 1) {
+                var resultB = 1;
+                var resultC = Math.floor(resultB * 25.4);
+                var resultD = 'No';
+            } else if (piesomnicell >= 1 && piesomnicell < 5) {
+                var resultB = 2;
+                var resultC = Math.floor(resultB * 25.4);
+                var resultD = 'No';
+            } else if (piesomnicell >= 5 && piesomnicell < 10) {
+                var resultB = 4;
+                var resultC = Math.floor(resultB * 25.4);
+                var resultD = 'No';
+            } else if (piesomnicell >= 10 && piesomnicell < 25) {
+                var resultB = 6;
+                var resultC = Math.floor(resultB * 25.4);
+                var resultD = 'No';
+            } else if (piesomnicell >= 25 && piesomnicell < 10000) {
+                var resultB = (dimenpulgadasomnicell * .05).toFixed(1);
+                var resultC = Math.floor(resultB * 25.4);
+                var resultD = 'Si';
+            }
+            document.getElementById('tolpulomnicell').value = resultB;
+            document.getElementById('tolmmomnicell').value = resultC;
+            document.getElementById('cincoporciento').value = resultD;
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space") {
+                document.getElementById("resetBtn5").click();
+            }
+        });
+    </script>
+    <script>
+        function calcula74() {
+            var dimenpulgadas74 = parseFloat(document.getElementById('dimenpulgadas74').value);
+            var resultA = (dimenpulgadas74) * 25.4;
+            var resultB = Math.ceil(resultA);
+            document.getElementById('dimmm74').value = resultB;
+            if (dimenpulgadas74 >= 0 && dimenpulgadas74 <= 6) {
+                const resultC = 12.7;
+                var resultD = Math.floor(resultC + resultA);
+                var resultE = resultD - resultB;
+            } else if (dimenpulgadas74 >= 6.01 && dimenpulgadas74 < 36) {
+                const resultC = 25.4;
+                var resultD = Math.floor(resultC + resultA);
+                var resultE = resultD - resultB;
+            } else if (dimenpulgadas74 >= 36.01 && dimenpulgadas74 < 120) {
+                const resultC = 76.2;
+                var resultD = Math.floor(resultC + resultA);
+                var resultE = resultD - resultB;
+            } else if (dimenpulgadas74 >= 120.1 && dimenpulgadas74 < 1200) {
+                const resultC = 152.4;
+                var resultD = Math.floor(resultC + resultA);
+                var resultE = resultD - resultB;
+            }
+            document.getElementById('tolmm74').value = resultE;
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space") {
+                document.getElementById("resetBtn6").click();
+            }
+        });
+    </script>
+    <div id="texto">Os. Co.</div>
 </body>
 
 </html>
