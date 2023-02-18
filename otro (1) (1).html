@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>
+        Calculo de Tolerancia
+    </title>
+    <style>
+        .centrado {
+            text-align: center;
+        }
+
+        .pequeno {
+            width: 50px;
+        }
+
+        .mediano {
+            width: 100px;
+        }
+
+        input {
+            font-size: 20px;
+        }
+
+        form {
+            font-size: 20px;
+        }
+
+        #dimen,
+        #dimension,
+        #dimen0,
+        #tolerancia,
+        #dimenpulgadas {
+            background-color: rgb(248, 234, 190);
+        }
+
+        #result1,
+        #result2,
+        #dimensionNominal,
+        #tolpositiva,
+        #tolnegativa,
+        #result10,
+        #result20,
+        #dimensionNominal1,
+        #tolpositiva1,
+        #tolnegativa1 {
+            background-color: rgb(146, 208, 80);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Jabil Wolfe</h3>
+    <form>
+        Dimension en mm<input type="number" id="dimen" oninput="calculate()" placeholder="Ing. Val."
+            class="centrado mediano">
+        Dimension Nominal<input type="text" id="result1" placeholder="Result." readonly class="centrado pequeno">
+        Tolerancia<input type="text" id="result2" placeholder="Tol." readonly class="centrado pequeno">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h3>Dimensiones independintes con Tolerancia ±</h3>
+        Dimension en mm.<input type="number" id="dimension" onchange="calcular()" placeholder="Ing. Val."
+            class="centrado mediano">
+        Tolerancia ±<input type="number" id="tolerancia" onchange="calcular()" placeholder="Ing. Val."
+            class="centrado mediano">
+        <br>
+        <br>
+        Dimension Nominal<input type="text" id="dimensionNominal" placeholder="Result." readonly
+            class="centrado pequeno ">
+        Tolerancia (+)<input type="text" id="tolpositiva" placeholder="Result" readonly class="centrado pequeno">
+        Tolerancia (-)<input type="text" id="tolnegativa" placeholder="Result" readonly class="centrado pequeno">
+        <br>
+        <br>
+        <input type="reset" value="Reset" id="resetBtn">
+    </form>
+    <br>
+    <br>
+    <br>
+    <h3>Jabil SMW</h3>
+    <form>
+        Dimension en mm<input type="number" id="dimen0" oninput="calculate0()" placeholder="Ing. Val."
+            class="centrado mediano">
+        Dimension Nominal<input type="text" id="result10" placeholder="Result." readonly class="centrado pequeno">
+        Tolerancia ±<input type="text" id="result20" placeholder="Tol." readonly class="centrado pequeno">
+        <br>
+        <br>
+        <input type="reset" value="Reset" id="resetBtn1">
+    </form>
+    <br>
+    <br>
+    <br>
+    <h3>Tolerancia Standar</h3>
+    <form>
+        Dimension en Pul.<input type="number" id="dimenpulgadas" oninput="calculastandar()" placeholder="Ing."
+            class="centrado mediano">
+        Dimension Nominal<input type="text" id="dimensionNominal1" placeholder="Result." readonly
+            class="centrado mediano">
+        Tolerancia (+)<input type="text" id="tolpositiva1" placeholder="Result" readonly class="centrado pequeno">
+        Tolerancia (-)<input type="text" id="tolnegativa1" placeholder="Result" readonly class="centrado pequeno">
+        <br>
+        <br>
+        <input type="reset" value="Reset" id="resetBtn3">
+    </form>
+    <script>
+        function calculate() {
+            var dimen = parseFloat(document.getElementById('dimen').value);
+            var resultA = Math.ceil(dimen);
+            document.getElementById('result1').value = resultA;
+            if (dimen >= 0 && dimen <= 25.4) {
+                var resultB = Math.floor(dimen + 1.5) - resultA;
+            } else if (dimen > 25.5 && dimen <= 152.4) {
+                var resultB = Math.floor(dimen + 6.4) - resultA;
+            } else if (dimen > 152.5 && dimen <= 609.6) {
+                var resultB = Math.floor(dimen + 12.7) - resultA;
+            } else if (dimen > 609.7 && dimen <= 1219.2) {
+                var resultB = Math.floor(dimen + 19.1) - resultA;
+            } else if (dimen > 1219.3 && dimen <= 2438.4) {
+                var resultB = Math.floor(dimen + 38.1) - resultA;
+            } else if (dimen > 2438.5 && dimen <= 4876.8) {
+                var resultB = Math.floor(dimen + 50.8) - resultA;
+            } else if (dimen > 4876.9 && dimen <= 9753.6) {
+                var resultB = Math.floor(dimen + 76.2) - resultA;
+            } else if (dimen > 9753.7 && dimen <= 19405.6) {
+                var resultB = Math.floor(dimen + 146.1) - resultA;
+            } else if (dimen > 19405.7 && dimen <= 38608) {
+                var resultB = Math.floor(dimen + 260.4) - resultA;
+            } else if (dimen > 38608.1 && dimen <= 76860.4) {
+                var resultB = Math.floor(dimen + 304.8) - resultA;
+            }
+            document.getElementById('result2').value = resultB;
+        }
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space") {
+                document.getElementById("resetBtn").click();
+            }
+        });
+    </script>
+    <script>
+        function calcular() {
+            var dimension = parseFloat(document.getElementById("dimension").value);
+            var tolerancia = parseFloat(document.getElementById("tolerancia").value);
+
+            var dimensionNominal = Math.ceil(dimension);
+
+            var tolnegativa = Math.ceil(dimension + tolerancia) - dimensionNominal;
+            var tolpositiva = Math.floor(dimension + tolerancia) - dimensionNominal;
+
+            document.getElementById("dimensionNominal").value = dimensionNominal;
+            document.getElementById("tolnegativa").value = tolnegativa;
+            document.getElementById("tolpositiva").value = tolpositiva;
+
+        }
+    </script>
+    <script>
+        function calculate0() {
+            var dimen = parseFloat(document.getElementById('dimen0').value);
+            var resultA = Math.ceil(dimen);
+            document.getElementById('result10').value = resultA;
+            if (dimen >= 0 && dimen <= 250) {
+                var resultB = Math.floor(dimen + 6) - resultA;
+            } else if (dimen > 250 && dimen <= 500) {
+                var resultB = Math.floor(dimen + 12.5) - resultA;
+            } else if (dimen > 500 && dimen <= 1250) {
+                var resultB = Math.floor(dimen + 25) - resultA;
+            } else if (dimen > 1250 && dimen <= 2500) {
+                var resultB = Math.floor(dimen + 37.5) - resultA;
+            } else if (dimen > 2500 && dimen <= 5000) {
+                var resultB = Math.floor(dimen + 50) - resultA;
+            } else if (dimen > 5000 && dimen <= 1000000) {
+                var resultB = Math.floor(dimen + 75) - resultA;
+            }
+            document.getElementById('result20').value = resultB;
+        }
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space") {
+                document.getElementById("resetBtn1").click();
+            }
+        });
+    </script>
+    <script>
+        function calculastandar() {
+            var dimenpulgadas = parseFloat(document.getElementById('dimenpulgadas').value);
+            var resultA = 25.4 * (dimenpulgadas);
+            var dimensionNominal1 = Math.ceil(resultA);
+            document.getElementById('dimensionNominal1').value = dimensionNominal1;
+            if (dimensionNominal1 >= 0 && dimensionNominal1 <= 25.4) {
+                var resultB = Math.floor(dimensionNominal1 + 1.5) - dimensionNominal1;
+                var resultC = 0;
+            } else if (dimensionNominal1 >= 25.5 && dimensionNominal1 <= 152.4) {
+                var resultB = Math.floor(dimensionNominal1 + 6.4) - dimensionNominal1;
+                var resultC = 0;
+            } else if (dimensionNominal1 >= 152.5 && dimensionNominal1 <= 609.6) {
+                var resultB = Math.floor(dimensionNominal1 + 12.7) - dimensionNominal1;
+                var resultC = 0;
+            } else if (dimensionNominal1 >= 609.7 && dimensionNominal1 <= 1219.2) {
+                var resultB = Math.floor(dimensionNominal1 + 19.1) - dimensionNominal1;
+                var resultC = Math.floor(dimensionNominal1 - -19.1) - dimensionNominal1;
+            } else if (dimensionNominal1 >= 1219.3 && dimensionNominal1 <= 2438.4) {
+                var resultB = Math.floor(dimensionNominal1 + 38.1) - dimensionNominal1;
+                var resultC = Math.floor(dimensionNominal1 - -38.1) - dimensionNominal1;
+            } else if (dimensionNominal1 >= 2438.5 && dimensionNominal1 <= 4876.8) {
+                var resultB = Math.floor(dimensionNominal1 + 50.8) - dimensionNominal1;
+                var resultC = Math.floor(dimensionNominal1 - -50.8) - dimensionNominal1;
+            } else if (dimensionNominal1 >= 4876.9 && dimensionNominal1 <= 9753.6) {
+                var resultB = Math.floor(dimensionNominal1 + 76.2) - dimensionNominal1;
+                var resultC = Math.floor(dimensionNominal1 - -76.2) - dimensionNominal1;
+            } else if (dimensionNominal1 >= 9753.7 && dimensionNominal1 <= 19405.6) {
+                var resultB = Math.floor(dimensionNominal1 + 146.1) - dimensionNominal1;
+                var resultC = Math.floor(dimensionNominal1 - -146.1) - dimensionNominal1;
+            } else if (dimensionNominal1 >= 19405.7 && dimensionNominal1 <= 38608) {
+                var resultB = Math.floor(dimensionNominal1 + 260.4) - dimensionNominal1;
+                var resultC = Math.floor(dimensionNominal1 - -260.4) - dimensionNominal1;
+            } else if (dimensionNominal1 >= 38608.1 && dimensionNominal1 <= 76860.4) {
+                var resultB = Math.floor(dimensionNominal1 + 304.8) - dimensionNominal1;
+                var resultC = Math.floor(dimensionNominal1 - -304.8) - dimensionNominal1;
+            }
+
+            document.getElementById('tolpositiva1').value = resultB;
+            document.getElementById('tolnegativa1').value = resultC;
+
+        }
+        document.addEventListener("keydown", function (event) {
+            if (event.code === "Space") {
+                document.getElementById("resetBtn3").click();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
