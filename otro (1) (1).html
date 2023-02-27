@@ -209,7 +209,7 @@
             if (isNaN(tolerancia)) {
             } else {
                 var dimensionNominal = Math.ceil(dimension);
-                var tolnegativa = Math.ceil(dimension + tolerancia) - dimensionNominal;
+                var tolnegativa = dimensionNominal - Math.ceil(dimension - tolerancia);
                 var tolpositiva = Math.floor(dimension + tolerancia) - dimensionNominal;
                 document.getElementById("dimensionNominal").value = dimensionNominal;
                 document.getElementById("tolnegativa").value = tolnegativa;
