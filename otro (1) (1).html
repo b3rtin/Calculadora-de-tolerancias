@@ -204,16 +204,20 @@
     </script>
     <script>
         function calcular() {
+
             var dimension = parseFloat(document.getElementById("dimension").value);
             var tolerancia = parseFloat(document.getElementById("tolerancia").value);
             if (isNaN(tolerancia)) {
-            } else {
-                var dimensionNominal = Math.ceil(dimension);
-                var tolnegativa = dimensionNominal - Math.ceil(dimension - tolerancia);
-                var tolpositiva = Math.floor(dimension + tolerancia) - dimensionNominal;
-                document.getElementById("dimensionNominal").value = dimensionNominal;
-                document.getElementById("tolnegativa").value = tolnegativa;
-                document.getElementById("tolpositiva").value = tolpositiva;
+            } else{
+
+            var dimensionNominal = Math.ceil(dimension);
+
+            var tolnegativa = dimensionNominal - Math.ceil(dimension - tolerancia);
+            var tolpositiva = Math.floor(dimension + tolerancia) - dimensionNominal;
+
+            document.getElementById("dimensionNominal").value = dimensionNominal;
+            document.getElementById("tolnegativa").value = tolnegativa;
+            document.getElementById("tolpositiva").value = tolpositiva;
             }
         }
     </script>
@@ -249,36 +253,36 @@
             var resultA = 25.4 * (dimenpulgadas);
             var dimensionNominal1 = Math.ceil(resultA);
             document.getElementById('dimensionNominal1').value = dimensionNominal1;
-            if (dimensionNominal1 >= 0 && dimensionNominal1 <= 25.4) {
-                var resultB = Math.floor(dimensionNominal1 + 1.5) - dimensionNominal1;
+            if (resultA >= 0 && resultA <= 25.4) {
+                var resultB = Math.floor(resultA + 1.5) - dimensionNominal1;
                 var resultC = 0;
-            } else if (dimensionNominal1 >= 25.5 && dimensionNominal1 <= 152.4) {
-                var resultB = Math.floor(dimensionNominal1 + 6.4) - dimensionNominal1;
+            } else if (resultA >= 25.5 && resultA <= 152.4) {
+                var resultB = Math.floor(resultA + 6.4) - dimensionNominal1;
                 var resultC = 0;
-            } else if (dimensionNominal1 >= 152.5 && dimensionNominal1 <= 609.6) {
-                var resultB = Math.floor(dimensionNominal1 + 12.7) - dimensionNominal1;
+            } else if (resultA >= 152.5 && resultA <= 609.6) {
+                var resultB = Math.floor(resultA + 12.7) - dimensionNominal1;
                 var resultC = 0;
-            } else if (dimensionNominal1 >= 609.7 && dimensionNominal1 <= 1219.2) {
-                var resultB = Math.floor(dimensionNominal1 + 19.1) - dimensionNominal1;
-                var resultC = Math.floor(dimensionNominal1 - -19.1) - dimensionNominal1;
-            } else if (dimensionNominal1 >= 1219.3 && dimensionNominal1 <= 2438.4) {
-                var resultB = Math.floor(dimensionNominal1 + 38.1) - dimensionNominal1;
-                var resultC = Math.floor(dimensionNominal1 - -38.1) - dimensionNominal1;
-            } else if (dimensionNominal1 >= 2438.5 && dimensionNominal1 <= 4876.8) {
-                var resultB = Math.floor(dimensionNominal1 + 50.8) - dimensionNominal1;
-                var resultC = Math.floor(dimensionNominal1 - -50.8) - dimensionNominal1;
-            } else if (dimensionNominal1 >= 4876.9 && dimensionNominal1 <= 9753.6) {
-                var resultB = Math.floor(dimensionNominal1 + 76.2) - dimensionNominal1;
-                var resultC = Math.floor(dimensionNominal1 - -76.2) - dimensionNominal1;
-            } else if (dimensionNominal1 >= 9753.7 && dimensionNominal1 <= 19405.6) {
-                var resultB = Math.floor(dimensionNominal1 + 146.1) - dimensionNominal1;
-                var resultC = Math.floor(dimensionNominal1 - -146.1) - dimensionNominal1;
-            } else if (dimensionNominal1 >= 19405.7 && dimensionNominal1 <= 38608) {
-                var resultB = Math.floor(dimensionNominal1 + 260.4) - dimensionNominal1;
-                var resultC = Math.floor(dimensionNominal1 - -260.4) - dimensionNominal1;
-            } else if (dimensionNominal1 >= 38608.1 && dimensionNominal1 <= 76860.4) {
-                var resultB = Math.floor(dimensionNominal1 + 304.8) - dimensionNominal1;
-                var resultC = Math.floor(dimensionNominal1 - -304.8) - dimensionNominal1;
+            } else if (resultA >= 609.7 && resultA <= 1219.2) {
+                var resultB = Math.floor(resultA + 19.1) - dimensionNominal1;
+                var resultC = Math.floor(resultA - -19.1) - dimensionNominal1;
+            } else if (resultA >= 1219.3 && resultA <= 2438.4) {
+                var resultB = Math.floor(resultA + 38.1) - dimensionNominal1;
+                var resultC = Math.floor(resultA - -38.1) - dimensionNominal1;
+            } else if (resultA >= 2438.5 && resultA <= 4876.8) {
+                var resultB = Math.floor(resultA + 50.8) - dimensionNominal1;
+                var resultC = Math.floor(resultA - -50.8) - dimensionNominal1;
+            } else if (resultA >= 4876.9 && resultA <= 9753.6) {
+                var resultB = Math.floor(resultA + 76.2) - dimensionNominal1;
+                var resultC = Math.floor(resultA - -76.2) - dimensionNominal1;
+            } else if (resultA >= 9753.7 && resultA <= 19405.6) {
+                var resultB = Math.floor(resultA + 146.1) - dimensionNominal1;
+                var resultC = Math.floor(resultA - -146.1) - dimensionNominal1;
+            } else if (resultA >= 19405.7 && resultA <= 38608) {
+                var resultB = Math.floor(resultA + 260.4) - dimensionNominal1;
+                var resultC = Math.floor(resultA - -260.4) - dimensionNominal1;
+            } else if (resultA >= 38608.1 && resultA <= 76860.4) {
+                var resultB = Math.floor(resultA + 304.8) - dimensionNominal1;
+                var resultC = Math.floor(resultA - -304.8) - dimensionNominal1;
             }
 
             document.getElementById('tolpositiva1').value = resultB;
@@ -297,30 +301,30 @@
             var resultA = 25.4 * (dimenpulgadasbreakout);
             var dimensionNominal1breakout = Math.ceil(resultA);
             document.getElementById('dimensionNominal1breakout').value = dimensionNominal1breakout;
-            if (dimensionNominal1breakout >= 0 && dimensionNominal1breakout <= 609.6) {
-                var resultB = Math.floor(dimensionNominal1breakout + 12.7) - dimensionNominal1breakout;
+            if (resultA >= 0 && resultA <= 609.6) {
+                var resultB = Math.floor(resultA + 12.7) - dimensionNominal1breakout;
                 var resultC = 0;
-            } else if (dimensionNominal1breakout >= 609.7 && dimensionNominal1breakout <= 1219.2) {
-                var resultB = Math.floor(dimensionNominal1breakout + 19.1) - dimensionNominal1breakout;
-                var resultC = Math.floor(dimensionNominal1breakout - -19.1) - dimensionNominal1breakout;
-            } else if (dimensionNominal1breakout >= 1219.3 && dimensionNominal1breakout <= 2438.4) {
-                var resultB = Math.floor(dimensionNominal1breakout + 38.1) - dimensionNominal1breakout;
-                var resultC = Math.floor(dimensionNominal1breakout - -38.1) - dimensionNominal1breakout;
-            } else if (dimensionNominal1breakout >= 2438.5 && dimensionNominal1breakout <= 4876.8) {
-                var resultB = Math.floor(dimensionNominal1breakout + 50.8) - dimensionNominal1breakout;
-                var resultC = Math.floor(dimensionNominal1breakout - -50.8) - dimensionNominal1breakout;
-            } else if (dimensionNominal1breakout >= 4876.9 && dimensionNominal1breakout <= 9753.6) {
-                var resultB = Math.floor(dimensionNominal1breakout + 76.2) - dimensionNominal1breakout;
-                var resultC = Math.floor(dimensionNominal1breakout - -76.2) - dimensionNominal1breakout;
-            } else if (dimensionNominal1breakout >= 9753.7 && dimensionNominal1breakout <= 19405.6) {
-                var resultB = Math.floor(dimensionNominal1breakout + 146.1) - dimensionNominal1breakout;
-                var resultC = Math.floor(dimensionNominal1breakout - -146.1) - dimensionNominal1breakout;
-            } else if (dimensionNominal1breakout >= 19405.7 && dimensionNominal1breakout <= 38608) {
-                var resultB = Math.floor(dimensionNominal1breakout + 260.4) - dimensionNominal1breakout;
-                var resultC = Math.floor(dimensionNominal1breakout - -260.4) - dimensionNominal1breakout;
-            } else if (dimensionNominal1breakout >= 38608.1 && dimensionNominal1breakout <= 76860.4) {
-                var resultB = Math.floor(dimensionNominal1breakout + 304.8) - dimensionNominal1breakout;
-                var resultC = Math.floor(dimensionNominal1breakout - -304.8) - dimensionNominal1breakout;
+            } else if (resultA >= 609.7 && resultA <= 1219.2) {
+                var resultB = Math.floor(resultA + 19.1) - dimensionNominal1breakout;
+                var resultC = Math.floor(resultA - -19.1) - dimensionNominal1breakout;
+            } else if (resultA >= 1219.3 && resultA <= 2438.4) {
+                var resultB = Math.floor(resultA + 38.1) - dimensionNominal1breakout;
+                var resultC = Math.floor(resultA - -38.1) - dimensionNominal1breakout;
+            } else if (resultA >= 2438.5 && resultA <= 4876.8) {
+                var resultB = Math.floor(resultA + 50.8) - dimensionNominal1breakout;
+                var resultC = Math.floor(resultA - -50.8) - dimensionNominal1breakout;
+            } else if (resultA >= 4876.9 && resultA <= 9753.6) {
+                var resultB = Math.floor(resultA + 76.2) - dimensionNominal1breakout;
+                var resultC = Math.floor(resultA - -76.2) - dimensionNominal1breakout;
+            } else if (resultA >= 9753.7 && resultA <= 19405.6) {
+                var resultB = Math.floor(resultA + 146.1) - dimensionNominal1breakout;
+                var resultC = Math.floor(resultA - -146.1) - dimensionNominal1breakout;
+            } else if (resultA >= 19405.7 && resultA <= 38608) {
+                var resultB = Math.floor(resultA + 260.4) - dimensionNominal1breakout;
+                var resultC = Math.floor(resultA - -260.4) - dimensionNominal1breakout;
+            } else if (resultA >= 38608.1 && resultA <= 76860.4) {
+                var resultB = Math.floor(resultA + 304.8) - dimensionNominal1breakout;
+                var resultC = Math.floor(resultA - -304.8) - dimensionNominal1breakout;
             }
 
             document.getElementById('tolpositiva1breakout').value = resultB;
